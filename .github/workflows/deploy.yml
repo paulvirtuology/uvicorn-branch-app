@@ -34,6 +34,7 @@ jobs:
           sshpass -p "${SERVER_PASSWORD}" ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} "
           cd ~/uvicorn-branch-app &&
           export PORT=\$( [ '${{ github.ref_name }}' = 'main' ] && echo '8001' || echo '8002' ) &&
-          sudo docker-compose down &&
-          sudo docker-compose up -d
+          echo PORT=\$PORT &&
+          docker-compose down &&
+          PORT=\$PORT BRANCH_NAME='${{ github.ref_name }}' docker-compose up -d
           "
