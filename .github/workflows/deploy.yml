@@ -35,6 +35,6 @@ jobs:
           cd ~/uvicorn-branch-app &&
           export PORT=\$( [ '${{ github.ref_name }}' = 'main' ] && echo '8001' || echo '8002' ) &&
           echo PORT=\$PORT &&
-          docker-compose down &&
-          PORT=\$PORT BRANCH_NAME='${{ github.ref_name }}' docker-compose up -d
+          sudo docker-compose down &&
+          PORT=\$PORT BRANCH_NAME='${{ github.ref_name }}' sudo docker-compose up -d
           "
