@@ -27,14 +27,15 @@ jobs:
       - name: Deploy with Docker
         env:
           SERVER_IP: 98.66.233.254
-          SERVER_USER: paul_virtuology
-          SERVER_PASSWORD: Andriamatoa301
+          SERVER_USER: myuser
+          SERVER_PASSWORD: mypassword
           BRANCH_NAME: ${{ github.ref_name }}
         run: |
           sshpass -p "${SERVER_PASSWORD}" ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} "
           cd ~/uvicorn-branch-app &&
           export PORT=\$( [ '${{ github.ref_name }}' = 'main' ] && echo '8001' || echo '8002' ) &&
-          echo PORT=\$PORT &&
+          echo Using PORT=\$PORT and BRANCH_NAME=${{ github.ref_name }} &&
+          echo \"PORT=\$PORT\nBRANCH_NAME=${{ github.ref_name }}\" > .env &&
           sudo docker-compose down &&
-          PORT=\$PORT BRANCH_NAME='${{ github.ref_name }}' sudo docker-compose up -d
+          sudo docker-compose up -d
           "
