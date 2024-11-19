@@ -6,6 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${PORT:-8000}:8000" # Default to 8000 if PORT is not set
+      - "8001:8000" # Default to 8000 if PORT is not set
     environment:
       - BRANCH_NAME=${BRANCH_NAME:-default}
