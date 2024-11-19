@@ -27,8 +27,8 @@ jobs:
       - name: Deploy with Docker
         env:
           SERVER_IP: 98.66.233.254
-          SERVER_USER: myuser
-          SERVER_PASSWORD: mypassword
+          SERVER_USER: paul_virtuology
+          SERVER_PASSWORD: Andriamatoa301
           BRANCH_NAME: ${{ github.ref_name }}
         run: |
           sshpass -p "${SERVER_PASSWORD}" ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} "
